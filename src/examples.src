@@ -1,0 +1,65 @@
+; -------------------------
+; CALL example with labels.
+; -------------------------
+
+CALL INIT
+CALL INC4
+CALL DEC4
+CALL INC4
+
+HLT
+
+INIT:
+	MVI A,0x20
+RET
+
+INC4:
+	INR A
+	INR A
+	INR A
+	INR A
+RET
+
+DEC4:
+	DCR A
+	DCR A
+	DCR A
+	DCR A
+RET
+
+; --------------------------------
+; Listing of Assembler directives.
+;---------------------------------
+
+#dir ADDR 0x8000    ; The starting address for instructions.
+#dir PC 0x8000      ; The initial value of Program Counter after loading program.
+
+
+; --------------------------------------------------------------------------
+; Fibonacci
+; https://www.tutorialspoint.com/8085-program-to-generate-fibonacci-sequence
+; --------------------------------------------------------------------------
+
+START:  LXI H,0x8050    ; Pointer to the out buffer
+        XRA A           ; Clear accumulator and reg. B
+        MOV B,A
+        MOV M,A         ; Copying content to target location
+        INR A           ; Increment A
+        INX H           ; Go the the next destination address.
+        MOV M,A         ; Moving the content
+        MVI C,0x08      ; Initialize counter
+LOOP:   ADD B           ; Getting next term
+        MOV B,M         ; Initializing term, e.g. F1 = F2
+        INX H           ; Go to next destination address.
+        MOV M,A         ; Writing to the out buffer
+        DCR C           ; Decrement count until 0 is reached F3= F1 + F2 (A) = (A) + (B)
+                        ; This is done with instruction ADDB.
+        JNZ LOOP
+        HLT             ; Terminate program
+
+
+; --------------------------------------------------------------------------------------
+; Check if number is prime.
+; https://www.tutorialspoint.com/8085-program-to-determine-if-the-number-is-prime-or-not
+; --------------------------------------------------------------------------------------
+

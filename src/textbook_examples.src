@@ -1,0 +1,261 @@
+; ---------------------------
+; Example 11-1
+; Load registers with values.
+; ---------------------------
+
+MVI A,0x49
+MVI B,0x4a
+MVI C,0x4b
+STA 0x6285
+HLT
+
+
+;--------------------------------------
+; Example 11-3
+; Load registers with values, add them.
+; -------------------------------------
+
+MVI A,0x17
+MVI B,0x2d
+ADD B
+STA 0x5600
+INR A
+MOV C,A
+HLT
+
+
+; --------------
+; Example 11-7
+; Countdown loop
+; --------------
+
+            MVI C,0x03  ; Load counter with decimal 3
+REPEAT:     DCR C       ; Decrement counter
+            JZ END      ; Test for zero
+            JMP REPEAT  ; Do it again
+END:        HLT
+
+
+; ---------------------
+; Example 11-8
+; Multiply some values.
+; ---------------------
+
+            MVI A,0x00  ; Clear the accumulator
+            MVI B,0x0C  ; Load decimal 12 into B
+            MVI C,0x08  ; Preset counter with 8
+REPEAT:     ADD B       ; Add decimal 12
+            DCR C       ; Decrement the counter
+            JZ DONE     ; Test for zero
+            JMP REPEAT  ; Do it again
+DONE:       HLT         ; Stop it.
+
+
+; ------------------------------------------
+; Example 11-9
+; Multiply some values, using JNZ this time.
+; ------------------------------------------
+
+            MVI A,0x00  ; Clear the accumulator
+            MVI B,0x0C  ; Load decimal 12 into B
+            MVI C,0x08  ; Preset counter with 8
+REPEAT:     ADD B       ; Add decimal 12
+            DCR C       ; Decrement the counter
+            JNZ REPEAT  ; Test for zero
+            HLT         ; Stop it.
+
+
+; ----------------------------------------
+; Example 11-11
+; Multiply some values using a subroutine.
+; ----------------------------------------
+
+            MVI A,0x00  ; Clear the accumulator
+            MVI B,0x0C  ; Load decimal 12 into B
+            MVI C,0x08  ; Preset counter with 8
+            CALL MULT   ; Call the subroutine.
+            HLT         ; Stop it.
+
+MULT:       ADD B       ; Add decimal 12
+            DCR C       ; Decrement the counter
+            JNZ MULT    ; Test for zero
+            RET         ; Return from subroutine.
+
+
+; ------------------------------
+; Example 11-13
+; Load parallel data from Input.
+; ------------------------------
+
+        IN 0x02 		; Get byte from port 2
+		ANI 0x01		; Isolate bit 0
+		JNZ YES			; Jump if bit 0 is a 1
+		MVI A,0x4E		; Load N into accumulator
+		JMP DONE		; Skip next instruction
+YES:	MVI A,0x59		; Load Y into accumulator
+DONE:	OUT 0x03		; Send answer to port 3
+		HLT
+
+
+; ----------------------------
+; Example 11-14
+; Load serial data from Input.
+; ----------------------------
+
+        IN 0x02
+        ANI 0x01
+        JNZ YES
+        MVI A,0x4E
+        JMP DONE
+YES:    MVI A,0x59
+DONE:   MVI C,0x08      ; Load counter with 8
+AGAIN:  OUT 0x04        ; Send LSB to port 4
+        RAR             ; Position next bit
+        DCR C           ; Decrement counter
+        JNZ AGAIN       ; Test counter
+        HLT
+
+
+; ------------------------------------------------------------------
+; Example 11-15
+; Handshaking I/O
+; Sequence:
+;   1. READY bit (bit 0, port 2) goes high.
+;   2. Get input from port 1.
+;   3. ACKNOWLEDGE bit (bit 7, port 4) goes high to reset READY bit.
+;   4. Reset the ACKNOWLEDGE bit
+; ------------------------------------------------------------------
+
+STATUS:     IN 0x02     ; Input byte from port 2
+            ANI 0x01    ; Isolate READY bit
+            JZ STATUS   ; Jump back if not ready
+            IN 0x01     ; Transfer data in port 1
+            MOV B,A     ; Transfer from A to B
+            MVI A,0x80  ; Set ACKNOWLEDGE bit
+            OUT 0x04    ; Output high ACKNOWLEDGE
+            MVI A,0x00  ; Reset ACKNOWLEDGE bit
+            OUT 0x04    ; Output low ACKNOWLEDGE
+            HLT
+
+
+; -----------------------------------------------------
+; Example 11-16
+; Produce a time delay of ~1ms when clock speed = 1MHz.
+; -----------------------------------------------------
+
+        CALL DELAY
+        HLT
+
+DELAY:  MVI C,0x46  ; Preset counter to decimal 70
+AGAIN:  DCR C       ; Count down
+        JNZ AGAIN   ; Test count
+        NOP         ; Delay
+        RET
+
+
+; -----------------------
+; Example 11-17
+; Produce ~10ms of delay.
+; -----------------------
+
+        CALL DELAY
+        HLT
+
+DELAY:  MVI B,0xA   ; Preset B counter with decimal 10
+LOOP1:  MVI C,0x47  ; Preset C counter with decimal 71
+LOOP2:  DCR C       ; Count down on C
+        JNZ LOOP2   ; Test for C count of zero
+        DCR B       ; Count down on B
+        JNZ LOOP1   ; Test for B count of zero
+        RET
+
+
+; ----------------------------------
+; Example 11-21
+; 8-bit Serial Data input read.
+; ----------------------------------
+
+        MVI B,0x00      ; Load zero into B register.
+        MVI C,0x07      ; Preset counter with decimal 8
+BIT:    IN 0x02         ; Input data
+        ANI 0x80        ; Isolate bit 7
+        ORA B           ; Update character
+        RAR             ; Move bits right
+        MOV B,A         ; Save bits in B
+        MVI A,0x73      ; Begin delay of ~1600 microseconds
+DELAY:  DCR A           ; Count down A
+        JNZ DELAY       ; Test A count for zero
+        DCR C           ; Count down C
+        JNZ BIT         ; TestC count for zero
+        IN 0x2          ; Input last bit
+        ANI 0x80        ; Isolate bit 7
+        ORA B
+        STA 0x2100      ; Save character
+
+
+; ------------------------------------------
+; Example 12-1
+; Double bytes can represent larger numbers.
+; Add 700 and 900
+; ------------------------------------------
+
+MVI A,0x00      ; Clear the accumulator
+MVI B,0x02      ; Store upper byte (UB) of 700
+MVI C,0xBC      ; Store lower byte (LB) of 700
+MVI D,0x03      ; Store UB of 900
+MVI E,0x84      ; Store LB of 900
+ADD C           ; ADD LB of 700
+ADD E           ; ADD LB of 900
+MOV L,A         ; Store partial sum
+MVI A,0x00      ; Clear the accumulator
+ADC B           ; Add UB of 700 with carry
+ADD D           ; Add UB of 900
+MOV H,A         ; Store partial sum
+HLT             ; Stop
+
+
+; -------------------------------------------
+; Example 12-2
+; Show a program that subtracts 700 from 900.
+; Store the answer in the H and L registers.
+; -------------------------------------------
+
+MVI A,0x84      ; Load LB of 900
+SUI 0xBC        ; Subtract LB of 700
+MOV L,A         ; Save lower half answer
+MVI A,0x03      ; Load UB of 900
+SBI 0x02        ; Subtract UB of 700 with borrow
+MOV H,A         ; Save upper half answer
+HLT
+
+
+;-------------------
+; Example 12-3
+; Loop using counter
+;-------------------
+
+        MVI E,0x00  ; Initialize counter
+LOOP:   INR E       ; Increment counter
+        MOV A,E     ; Load A with E
+        CPI 0xFF    ; Compare to 255
+        JNZ LOOP    ; Go back if not 255
+        HLT
+
+
+; --------------------------------------------------------------
+; Example 12-4
+; Move values in memory locations 0x2000-0x20FF to 0x3000-0x30FF
+; --------------------------------------------------------------
+        LXI H,0x1FFF    ; Initialize pointer
+LOOP:   INX H           ; Advance pointer
+        MOV B,M         ; Read byte
+        MOV A,H         ; Laod 0x20 into ACC
+        ADI 0x10        ; Add offset to get 30
+        MOV H,A         ; Offset pointer
+        MOV M,B         ; Write byte in new location
+        SUI 0x10        ; Subtract offset
+        MOV H,A         ; Restore H for next read
+        MOV A,L         ; Prepare for compare
+        CPI 0xFF        ; Check for 255
+        JNZ LOOP        ; If not done, get next byte
+        HLT             ; Stop
