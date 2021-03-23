@@ -1,5 +1,5 @@
-// cmd
-// See page 195 Digital Computer Electronics, Third Edition by Malvino & Brown
+// Demo of SAP-3.
+// Inspired by Digital Computer Electronics, Third Edition by Malvino & Brown
 // Emulated by John Squibb, 2021
 package main
 
