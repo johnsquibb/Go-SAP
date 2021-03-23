@@ -22,30 +22,30 @@ var MhzDelay uint64
 // Sample Assembly source code.
 // Assembly code is converted to machine code by Assemble method.
 var source = `
-#dir ADDR 0x2000    ; The starting address for instructions.
-#dir PC 0x2000      ; The initial value of Program Counter after loading program.
+; --------------------------------------------------------------------------------------
+; Check if number is prime.
+; https://www.tutorialspoint.com/8085-program-to-determine-if-the-number-is-prime-or-not
+; --------------------------------------------------------------------------------------
 
-; --------------------------------------------------------------------------
-; Fibonacci
-; https://www.tutorialspoint.com/8085-program-to-generate-fibonacci-sequence
-; --------------------------------------------------------------------------
-
-START:  LXI H,0x8050    ; Pointer to the out buffer
-        XRA A           ; Clear accumulator and reg. B
-        MOV B,A
-        MOV M,A         ; Copying content to target location
-        INR A           ; Increment A
-        INX H           ; Go the the next destination address.
-        MOV M,A         ; Moving the content
-        MVI C,0x08      ; Initialize counter
-LOOP:   ADD B           ; Getting next term
-        MOV B,M         ; Initializing term, e.g. F1 = F2
-        INX H           ; Go to next destination address.
-        MOV M,A         ; Writing to the out buffer
-        DCR C           ; Decrement count until 0 is reached F3= F1 + F2 (A) = (A) + (B)
-                        ; This is done with instruction ADDB.
-        JNZ LOOP
-        HLT             ; Terminate program
+        LXI H,0xF100    ; Point to F100 to take the number
+        MOV A,M         ; Take the number into Accumulator
+        MVI C,0x00      ; Clear C register
+        MOV D,A         ; Copy A to D
+        MOV E,A         ; Copy A to E
+L2:     MOV B,D         ; Load B with D
+L1:     CMP B           ; Compare B with A
+        JC LABEL        ; if carry is generated, jump to Label
+        SUB B           ; Subtract B from A
+        JNZ L1          ; Jump to L1
+LABEL:  CPI 0x00        ; Compare A with 00H
+        JNZ SKIP        ; If Z = 0, jump to SKIP
+        INR C           ; Increase C by 1
+SKIP:   MOV A,E         ; Load A with E again
+        DCR D           ; Decrease D by 1
+        JNZ L2          ; Jump to L2 label if Z = 0
+        MOV A,C         ; Load C to A
+        STA 0xF101      ; Store result into F101
+        HLT             ; Terminate the program
 `
 
 func main() {
@@ -73,6 +73,11 @@ func RunInteractiveBenchmark() {
 	system := machine.New()
 	system.Start()
 	system.ProgramCounter.Value = types.DoubleWord(directives.PC)
+
+	// Manually set a value in RAM for our prime number example.
+	// After execution, 0xF101 will contain the number of unique factors for the number. 2 factors means prime.
+	// I kind of want to anonymously submit this for the code challenge answer at work.
+	system.RandomAccessMemory.Values[0xF100] = 97
 
 	// Start ticking the clock, try to ascertain delay for desired clock speed.
 	startClock()
@@ -132,7 +137,7 @@ func RunInteractiveBenchmark() {
 	fmt.Println()
 
 	// Examine a range of RAM.
-	showRAM(system, 0x8050, 0x8059)
+	showRAM(system, 0xF100, 0xF101)
 	fmt.Println()
 	fmt.Println()
 

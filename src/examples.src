@@ -63,3 +63,22 @@ LOOP:   ADD B           ; Getting next term
 ; https://www.tutorialspoint.com/8085-program-to-determine-if-the-number-is-prime-or-not
 ; --------------------------------------------------------------------------------------
 
+        LXI H,F100      ; Point to F100 to take the number
+        MOV A,M         ; Take the number into Accumulator
+        MVI C,00        ; Clear C register
+        MOV D,A         ; Copy A to D
+        MOV E,A         ; Copy A to E
+        MOV B,D         ; Load B with D
+        CMP B           ; Compare B with A
+        JC LABEL        ; if carry is generated, jump to Label
+        SUB B           ; Subtract B from A
+        JNZ L1          ; Jump to L1
+LABEL:  CPI 00          ; Compare A with 00H
+        JNZ SKIP        ; If Z = 0, jump to SKIP
+        INR C           ; Increase C by 1
+SKIP:   MOV A,E         ; Load A with E again
+        DCR D           ; Decrease D by 1
+        JNZ L2          ; Jump to L2 label if Z = 0
+        MOV A,C         ; Load C to A
+        STA F101        ; Store result into F101
+        HLT             ; Terminate the program
