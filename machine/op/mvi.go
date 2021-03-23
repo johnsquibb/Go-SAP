@@ -1,6 +1,6 @@
 package op
 
-import "SystemOnePoc/sap3/machine/types"
+import "Go-SAP3/machine/types"
 
 const (
 	MVI_A = 0x3e

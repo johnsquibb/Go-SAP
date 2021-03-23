@@ -1,6 +1,6 @@
 package machine
 
-import "SystemOnePoc/sap3/machine/types"
+import "Go-SAP3/machine/types"
 
 // Bus is a transport for moving Value around the system.
 type Bus struct {

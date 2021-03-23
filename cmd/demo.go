@@ -4,9 +4,9 @@
 package main
 
 import (
-	"SystemOnePoc/sap3/machine"
-	"SystemOnePoc/sap3/machine/asm"
-	"SystemOnePoc/sap3/machine/types"
+	"Go-SAP3/machine"
+	"Go-SAP3/machine/asm"
+	"Go-SAP3/machine/types"
 	"fmt"
 	"golang.org/x/text/language"
 	"golang.org/x/text/message"

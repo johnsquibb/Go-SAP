@@ -1,6 +1,6 @@
 package op
 
-import "SystemOnePoc/sap3/machine/types"
+import "Go-SAP3/machine/types"
 
 const (
 	POP_B   = 0xc1

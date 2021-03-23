@@ -1,6 +1,6 @@
 package machine
 
-import "SystemOnePoc/sap3/machine/types"
+import "Go-SAP3/machine/types"
 
 // MemoryAddressRegister controls the memory I/O.
 // During execution, the address in the ProgramCounter is latched into the MAR. Later MAR reads the value from RAM at

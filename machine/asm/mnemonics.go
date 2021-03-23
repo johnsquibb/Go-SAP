@@ -1,8 +1,8 @@
 package asm
 
 import (
-	"SystemOnePoc/sap3/machine/op"
-	"SystemOnePoc/sap3/machine/types"
+	"Go-SAP3/machine/op"
+	"Go-SAP3/machine/types"
 )
 
 // Mnemonics are textual representations of OpCode constants.

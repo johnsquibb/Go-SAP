@@ -1,6 +1,6 @@
 package machine
 
-import "SystemOnePoc/sap3/machine/types"
+import "Go-SAP3/machine/types"
 
 // StackPointer keeps track of the stack pointer.
 type StackPointer struct {

@@ -1,6 +1,6 @@
 package op
 
-import "SystemOnePoc/sap3/machine/types"
+import "Go-SAP3/machine/types"
 
 // Double-add BC Register pair to the HL Register pair.
 // H and L both act as accumulator during this instruction.

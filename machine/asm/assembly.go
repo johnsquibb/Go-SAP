@@ -1,8 +1,8 @@
 package asm
 
 import (
-	"SystemOnePoc/sap3/machine/asm/opcodes"
-	"SystemOnePoc/sap3/machine/types"
+	"Go-SAP3/machine/asm/opcodes"
+	"Go-SAP3/machine/types"
 	"fmt"
 	"log"
 	"strconv"

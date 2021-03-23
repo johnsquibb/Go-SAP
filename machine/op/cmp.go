@@ -1,6 +1,6 @@
 package op
 
-import "SystemOnePoc/sap3/machine/types"
+import "Go-SAP3/machine/types"
 
 const (
 	CMP_A = 0xbf

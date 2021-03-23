@@ -1,8 +1,8 @@
 package test
 
 import (
-	"SystemOnePoc/sap3/machine"
-	"SystemOnePoc/sap3/machine/asm"
+	"Go-SAP3/machine"
+	"Go-SAP3/machine/asm"
 	"log"
 	"testing"
 )

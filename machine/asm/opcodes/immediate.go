@@ -1,8 +1,8 @@
 package opcodes
 
 import (
-	"SystemOnePoc/sap3/machine/op"
-	"SystemOnePoc/sap3/machine/types"
+	"Go-SAP3/machine/op"
+	"Go-SAP3/machine/types"
 )
 
 // ImmediateInstructions is the list of OpCode(s) that supply an operand as a byte for immediate use.

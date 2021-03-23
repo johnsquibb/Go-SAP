@@ -1,7 +1,7 @@
 package op
 
 import (
-	"SystemOnePoc/sap3/machine/types"
+	"Go-SAP3/machine/types"
 )
 
 // Microcodes is the lookup table of 8085 Op Codes to cmd microinstructions.
