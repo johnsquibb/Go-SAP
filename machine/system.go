@@ -121,6 +121,7 @@ func (s *System) ClearRegisters() {
 	s.OutputRegister4.Value = 0
 }
 
+// ClearFlags sets all flags to Low and empties the flags register.
 func (s *System) ClearFlags() {
 	s.ArithmeticLogicUnit.Flags.Carry = types.Low
 	s.ArithmeticLogicUnit.Flags.Zero = types.Low

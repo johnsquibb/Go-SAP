@@ -32,8 +32,8 @@ type RingCounter struct {
 	Value types.QuadrupleWord
 }
 
-// System clears PresettableCounter during T1.
 // Update sets PresettableCounter ReadEnable during T3.
+// System clears PresettableCounter during T1.
 func (r *RingCounter) Update(p *PresettableCounter) {
 	p.SetEnable = r.Value == T3
 }

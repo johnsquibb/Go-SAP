@@ -154,6 +154,8 @@ func NewControlWord(mi types.OctupleWord) ControlWord {
 	return cw
 }
 
+// UpdateCtr tracks the number of complete executions of Update.
+// This can be used to track machine cycle count.
 var UpdateCtr = 0
 
 // Update sets ControlWord flags to System units and executes the next T state.
@@ -227,7 +229,7 @@ func (c *ControllerSequencer) Update(s *System) {
 	s.ArithmeticLogicUnit.Flags.ZeroEnable = c.ControlWord.ZeroFlagEnable
 	s.ArithmeticLogicUnit.Flags.ParityEnable = c.ControlWord.ParityFlagEnable
 
-	// SAP-2 can skip execution T (>T3) states when Noop is received.
+	// SAP can skip execution when Noop is received.
 	// Since all control word flags are off by default, there is nothing to do.
 	// Reset the ring counter and go to next instruction.
 	if mi == op.Noop {
@@ -235,9 +237,6 @@ func (c *ControllerSequencer) Update(s *System) {
 		s.RingCounter.Value = END
 		return
 	}
-
-	//log.Println("T", s.RingCounter.Value+1, s.ProgramCounter.Value)
-	UpdateCtr++
 
 	switch s.RingCounter.Value {
 	// Fetch Cycle
@@ -251,6 +250,8 @@ func (c *ControllerSequencer) Update(s *System) {
 	default:
 		c.ExecutionState(s)
 	}
+
+	UpdateCtr++
 }
 
 // AddressState updates system state at T1.
@@ -344,6 +345,7 @@ func (c ControllerSequencer) CheckConditionFlags(s *System) {
 	}
 }
 
+// UpdateOutputs updates all output registers.
 func (c ControllerSequencer) UpdateOutputs(s *System) {
 	s.OutputRegister3.ReadEnable = types.Low
 	s.OutputRegister4.ReadEnable = types.Low
@@ -366,6 +368,7 @@ func (c ControllerSequencer) UpdateOutputs(s *System) {
 	}
 }
 
+// UpdateInputs updates all input registers.
 func (c ControllerSequencer) UpdateInputs(s *System) {
 	s.InputRegister1.WriteEnable = types.Low
 	s.InputRegister2.WriteEnable = types.Low
@@ -388,6 +391,7 @@ func (c ControllerSequencer) UpdateInputs(s *System) {
 	}
 }
 
+// UpdateALU updates the ArithmeticLogicUnit from values in registers.
 func (c ControllerSequencer) UpdateALU(s *System) {
 	// BC pair.
 	if c.ControlWord.BRegisterAccumulatorEnable == types.High &&
@@ -416,7 +420,7 @@ func (c ControllerSequencer) UpdateALU(s *System) {
 		return
 	}
 
-	// SP has built-in icrement/decrement operations.
+	// StackPointer has built-in increment/decrement operations.
 	if c.ControlWord.StackPointerAccumulatorEnable == types.High {
 		// Increment
 		if c.ControlWord.ArithmeticLogicUnitModeBit0 == types.Low &&
@@ -474,6 +478,7 @@ func (c ControllerSequencer) UpdateALU(s *System) {
 	s.ArithmeticLogicUnit.Update(s.Accumulator, s.TemporaryRegister, s)
 }
 
+// WriteRegisters updates all registers in order to perform write operations.
 func WriteRegisters(s *System) {
 
 	if s.ProgramCounter.WriteEnable || s.ProgramCounter.ClockEnable == types.High {
@@ -541,6 +546,7 @@ func WriteRegisters(s *System) {
 	}
 }
 
+// ReadRegisters updates all registers in order to perform read operations.
 func ReadRegisters(s *System) {
 	if s.ProgramCounter.ReadEnable == types.High {
 		s.ProgramCounter.Update(&s.Bus)

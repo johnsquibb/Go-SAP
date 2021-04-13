@@ -59,6 +59,7 @@ func Debug(message ...interface{}) {
 	}
 }
 
+// DebugJson supplies formatted JSON messages to Debug.
 func DebugJson(item interface{}) {
 	if debugEnabled {
 		b, _ := json.MarshalIndent(item, "  ", "  ")

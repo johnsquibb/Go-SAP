@@ -5,20 +5,18 @@ import (
 	"Go-SAP3/machine/types"
 )
 
-// Address ROM contents.
-// Emulates a physical ROM integrated circuit.
+// AddressRomContents emulates a physical ROM integrated circuit.
 // The keys correspond to the OpCodes, and the values correspond to the starting addresses
 // sent to the PresettableCounter. Starting addresses should correspond to keys of ControlRomContents below.
 // TODO This will eventually be read from file to allow for modification.
 var AddressRomContents = types.AddressRom{}
 
-// Control ROM contents.
-// Emulates a physical ROM integrated circuit.
+// ControlRomContents emulates a physical ROM integrated circuit.
 // The bit flags correspond to the states of the ControlWord flags, as indicated by "Active" comments below.
 // TODO This will eventually be read from file to allow for modification.
 var ControlRomContents = types.ControlRom{}
 
-// FillRomContents initializes ControlRomContents and AddressRomContents with Microcodes.
+// FillRomContents initializes ControlRomContents and AddressRomContents with Microcode.
 func FillRomContents() {
 	ctr := 0
 

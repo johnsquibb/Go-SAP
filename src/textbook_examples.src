@@ -249,7 +249,7 @@ LOOP:   INR E       ; Increment counter
         LXI H,0x1FFF    ; Initialize pointer
 LOOP:   INX H           ; Advance pointer
         MOV B,M         ; Read byte
-        MOV A,H         ; Laod 0x20 into ACC
+        MOV A,H         ; Load 0x20 into ACC
         ADI 0x10        ; Add offset to get 30
         MOV H,A         ; Offset pointer
         MOV M,B         ; Write byte in new location
