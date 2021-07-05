@@ -7,6 +7,9 @@ Albert P. Malvino and Jerald A. Brown. This emulator was written while iterating
 textbook. It is not designed to be an efficient or concise emulator, the code is written to simulate the concepts of
 each of the SAP components in a straightforward, and often verbose manner.
 
+## Install
+Download project, then run the example: `go run docs/example.go`
+
 ## Architecture
 
 - SAP 8080-like processor architecture. Knowledge of 8085 Assemlby is useful.
