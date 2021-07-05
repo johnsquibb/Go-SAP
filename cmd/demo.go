@@ -22,30 +22,34 @@ var MhzDelay uint64
 // Sample Assembly source code.
 // Assembly code is converted to machine code by Assemble method.
 var source = `
-; --------------------------------------------------------------------------------------
-; Check if number is prime.
-; https://www.tutorialspoint.com/8085-program-to-determine-if-the-number-is-prime-or-not
-; --------------------------------------------------------------------------------------
+; -------------------------
+; CALL example with labels.
+; -------------------------
 
-        LXI H,0xF100    ; Point to F100 to take the number
-        MOV A,M         ; Take the number into Accumulator
-        MVI C,0x00      ; Clear C register
-        MOV D,A         ; Copy A to D
-        MOV E,A         ; Copy A to E
-L2:     MOV B,D         ; Load B with D
-L1:     CMP B           ; Compare B with A
-        JC LABEL        ; if carry is generated, jump to Label
-        SUB B           ; Subtract B from A
-        JNZ L1          ; Jump to L1
-LABEL:  CPI 0x00        ; Compare A with 00H
-        JNZ SKIP        ; If Z = 0, jump to SKIP
-        INR C           ; Increase C by 1
-SKIP:   MOV A,E         ; Load A with E again
-        DCR D           ; Decrease D by 1
-        JNZ L2          ; Jump to L2 label if Z = 0
-        MOV A,C         ; Load C to A
-        STA 0xF101      ; Store result into F101
-        HLT             ; Terminate the program
+CALL INIT
+CALL INC4
+CALL DEC4
+CALL INC4
+
+HLT
+
+INIT:
+	MVI A,0x20
+RET
+
+INC4:
+	INR A
+	INR A
+	INR A
+	INR A
+RET
+
+DEC4:
+	DCR A
+	DCR A
+	DCR A
+	DCR A
+RET
 `
 
 func main() {
