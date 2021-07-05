@@ -9,7 +9,7 @@ each of the SAP components in a straightforward, and often verbose manner.
 
 ## Architecture
 
-- SAP 8080-like processor architecture. Knowledge of 8085 is useful.
+- SAP 8080-like processor architecture. Knowledge of 8085 Assemlby is useful.
 - 8-bit word size
 - 64K memory with 16-bit addressing
 - Standard 8080 ALU operations
