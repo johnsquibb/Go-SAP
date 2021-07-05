@@ -2,7 +2,7 @@
 
 An emulator for "Simple As Possible" architecture written in Go.
 
-The SAP-1 "Simple As Possible" emulator is inspired by the chapters from Digital Computer Electronics: 3rd Edition by
+The SAP "Simple As Possible" emulator is inspired by the chapters from Digital Computer Electronics: 3rd Edition by
 Albert P. Malvino and Jerald A. Brown. This emulator was written while iterating through each of the sections of the
 textbook. It is not designed to be an efficient or concise emulator, the code is written to simulate the concepts of
 each of the SAP components in a straightforward, and often verbose manner.
