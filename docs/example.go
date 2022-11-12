@@ -20,6 +20,11 @@ CALL INC4
 CALL DEC4
 CALL INC4
 
+OUT 0x3
+
+CALL INC4
+OUT 0x4
+
 HLT
 
 INIT:
@@ -81,6 +86,8 @@ func main() {
 	fmt.Println(fmt.Sprintf("REG F:\t 0x%X\t (%d)", system.FRegister.Value, system.FRegister.Value))
 	fmt.Println(fmt.Sprintf("REG H:\t 0x%X\t (%d)", system.HRegister.Value, system.HRegister.Value))
 	fmt.Println(fmt.Sprintf("REG L:\t 0x%X\t (%d)", system.LRegister.Value, system.LRegister.Value))
+	fmt.Println(fmt.Sprintf("OUTPUT (3):\t 0x%X\t (%d)", system.OutputRegister3.Value, system.OutputRegister3.Value))
+	fmt.Println(fmt.Sprintf("OUTPUT (4):\t 0x%X\t (%d)", system.OutputRegister4.Value, system.OutputRegister4.Value))
 	fmt.Println()
 
 	// Display the state of ALU flags.

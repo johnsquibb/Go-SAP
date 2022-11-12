@@ -20,7 +20,7 @@ type Flags struct {
 	Sign         types.State
 	Zero         types.State
 	Parity       types.State
-	CaryEnable   types.State
+	CarryEnable  types.State
 	SignEnable   types.State
 	ZeroEnable   types.State
 	ParityEnable types.State
@@ -147,7 +147,7 @@ func (a *ArithmeticLogicUnit) Calculate() {
 		a.Flags.Zero = a.Sum == 0
 	}
 
-	if a.Flags.CaryEnable == types.High {
+	if a.Flags.CarryEnable == types.High {
 		a.Flags.Carry = carryOut
 	}
 

@@ -12,7 +12,7 @@ Download project, then run the example: `go run docs/example.go`
 
 ## Architecture
 
-- SAP 8080-like processor architecture. Knowledge of 8085 Assemlby is useful.
+- SAP 8080-like processor architecture. Knowledge of 8085 Assembly is useful.
 - 8-bit word size
 - 64K memory with 16-bit addressing
 - Standard 8080 ALU operations
