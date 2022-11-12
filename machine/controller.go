@@ -224,7 +224,7 @@ func (c *ControllerSequencer) Update(s *System) {
 	s.ArithmeticLogicUnit.AluMode.Bit2 = c.ControlWord.ArithmeticLogicUnitModeBit2
 	s.ArithmeticLogicUnit.AluMode.Bit3 = c.ControlWord.ArithmeticLogicUnitModeBit3
 	s.ArithmeticLogicUnit.AluMode.Bit4 = c.ControlWord.ArithmeticLogicUnitModeBit4
-	s.ArithmeticLogicUnit.Flags.CaryEnable = c.ControlWord.CarryFlagEnable
+	s.ArithmeticLogicUnit.Flags.CarryEnable = c.ControlWord.CarryFlagEnable
 	s.ArithmeticLogicUnit.Flags.SignEnable = c.ControlWord.SignFlagEnable
 	s.ArithmeticLogicUnit.Flags.ZeroEnable = c.ControlWord.ZeroFlagEnable
 	s.ArithmeticLogicUnit.Flags.ParityEnable = c.ControlWord.ParityFlagEnable
