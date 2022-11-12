@@ -58,10 +58,9 @@ type ControlWord struct {
 	StackPointerReadEnable             types.State
 	StackPointerWriteEnable            types.State
 	StackPointerAccumulatorEnable      types.State
-	OutputRegisterPortSet              types.State
-	OutputRegisterReadEnable           types.State
-	InputRegisterPortSet               types.State
-	InputRegisterWriteEnable           types.State
+	IORegisterPortSet                  types.State
+	IORegisterReadEnable               types.State
+	IORegisterWriteEnable              types.State
 	ArithmeticLogicUnitWriteEnable     types.State
 	ArithmeticLogicUnitModeBit0        types.State
 	ArithmeticLogicUnitModeBit1        types.State
@@ -146,10 +145,9 @@ func NewControlWord(mi types.OctupleWord) ControlWord {
 	cw.FlagsCheckZeroFlagNotEnabled = mi&op.FLG_czfne != 0
 	cw.FlagsCheckParityFlagIsEnabled = mi&op.FLG_cpfie != 0
 	cw.FlagsCheckParityFlagIsNotEnabled = mi&op.FLG_cpfne != 0
-	cw.InputRegisterPortSet = mi&op.IN_ps != 0
-	cw.InputRegisterWriteEnable = mi&op.IN_we != 0
-	cw.OutputRegisterPortSet = mi&op.OUT_ps != 0
-	cw.OutputRegisterReadEnable = mi&op.OUT_re != 0
+	cw.IORegisterPortSet = mi&op.IO_ps != 0
+	cw.IORegisterWriteEnable = mi&op.IO_we != 0
+	cw.IORegisterReadEnable = mi&op.IO_re != 0
 
 	return cw
 }
@@ -350,7 +348,7 @@ func (c ControllerSequencer) UpdateOutputs(s *System) {
 	s.OutputRegister3.ReadEnable = types.Low
 	s.OutputRegister4.ReadEnable = types.Low
 
-	if c.ControlWord.OutputRegisterPortSet {
+	if c.ControlWord.IORegisterPortSet {
 		switch types.Word(s.Bus.Value) {
 		case 0b0011:
 			s.OutputRegister3.ReadEnable = types.High
@@ -373,7 +371,7 @@ func (c ControllerSequencer) UpdateInputs(s *System) {
 	s.InputRegister1.WriteEnable = types.Low
 	s.InputRegister2.WriteEnable = types.Low
 
-	if c.ControlWord.InputRegisterPortSet {
+	if c.ControlWord.IORegisterPortSet {
 		switch types.Word(s.Bus.Value) {
 		case 0b0001:
 			s.InputRegister1.WriteEnable = types.High
