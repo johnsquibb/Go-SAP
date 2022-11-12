@@ -2,25 +2,22 @@ package op
 
 // Control bit flags.
 const (
-	// 16KB Control ROM A
-	Noop      = 0x0
-	PC_re     = 0x1
-	PC_we     = 0x2
-	PC_ce     = 0x4
-	MAR_re    = 0x8
-	MDR_re    = 0x10
-	MDR_we    = 0x20
-	MAB_lsbre = 0x40
-	MAB_lsbwe = 0x80
-	MAB_msbre = 0x100
-	MAB_msbwe = 0x200
-	GPB_lsbre = 0x400
-	GPB_lsbwe = 0x800
-	GPB_msbre = 0x1000
-	GPB_msbwe = 0x2000
-	IR_re     = 0x4000
-
-	// 16KB Control ROM B
+	Noop       = 0x0
+	PC_re      = 0x1
+	PC_we      = 0x2
+	PC_ce      = 0x4
+	MAR_re     = 0x8
+	MDR_re     = 0x10
+	MDR_we     = 0x20
+	MAB_lsbre  = 0x40
+	MAB_lsbwe  = 0x80
+	MAB_msbre  = 0x100
+	MAB_msbwe  = 0x200
+	GPB_lsbre  = 0x400
+	GPB_lsbwe  = 0x800
+	GPB_msbre  = 0x1000
+	GPB_msbwe  = 0x2000
+	IR_re      = 0x4000
 	ACC_re     = 0x8000
 	ACC_we     = 0x10000
 	TMP_re     = 0x20000
@@ -37,8 +34,6 @@ const (
 	EREG_re    = 0x10000000
 	EREG_we    = 0x20000000
 	EREG_accen = 0x40000000
-
-	// 16KB Control ROM C
 	FREG_re    = 0x80000000
 	FREG_we    = 0x100000000
 	HREG_re    = 0x200000000
@@ -55,24 +50,22 @@ const (
 	ALU_b1     = 0x100000000000
 	ALU_b2     = 0x200000000000
 	ALU_b3     = 0x400000000000
-
-	// 16KB Control ROM D
-	ALU_b4    = 0x800000000000
-	FLG_csfie = 0x1000000000000
-	FLG_csfne = 0x2000000000000
-	FLG_czfie = 0x4000000000000
-	FLG_czfne = 0x8000000000000
-	FLG_ccfie = 0x10000000000000
-	FLG_ccfne = 0x20000000000000
-	FLG_cpfie = 0x40000000000000
-	FLG_cpfne = 0x80000000000000
-	FLG_cen   = 0x100000000000000
-	FLG_zen   = 0x200000000000000
-	FLG_sen   = 0x400000000000000
-	FLG_pen   = 0x800000000000000
-	IO_ps     = 0x1000000000000000
-	IO_we     = 0x2000000000000000
-	IO_re     = 0x4000000000000000
+	ALU_b4     = 0x800000000000
+	FLG_csfie  = 0x1000000000000
+	FLG_csfne  = 0x2000000000000
+	FLG_czfie  = 0x4000000000000
+	FLG_czfne  = 0x8000000000000
+	FLG_ccfie  = 0x10000000000000
+	FLG_ccfne  = 0x20000000000000
+	FLG_cpfie  = 0x40000000000000
+	FLG_cpfne  = 0x80000000000000
+	FLG_cen    = 0x100000000000000
+	FLG_zen    = 0x200000000000000
+	FLG_sen    = 0x400000000000000
+	FLG_pen    = 0x800000000000000
+	IO_ps      = 0x1000000000000000
+	IO_we      = 0x2000000000000000
+	IO_re      = 0x4000000000000000
 )
 
 // Control bit flags for AluMode readability.
