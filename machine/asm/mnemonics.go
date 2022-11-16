@@ -92,6 +92,8 @@ var Mnemonics = map[string]types.Word{
 	"JPO":      op.JPO,
 	"JZ":       op.JZ,
 	"LDA":      op.LDA,
+	"LDAX B":   op.LDAX_B,
+	"LDAX D":   op.LDAX_D,
 	"LXI B":    op.LXI_B,
 	"LXI D":    op.LXI_D,
 	"LXI H":    op.LXI_H,

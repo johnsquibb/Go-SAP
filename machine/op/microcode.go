@@ -90,6 +90,8 @@ var Microcodes = [][]types.OctupleWord{
 	JPO:      mcJPO,
 	JZ:       mcJZ,
 	LDA:      mcLDA,
+	LDAX_B:   mcLDAX_B,
+	LDAX_D:   mcLDAX_D,
 	LXI_B:    mcLXI_B,
 	LXI_D:    mcLXI_D,
 	LXI_H:    mcLXI_H,

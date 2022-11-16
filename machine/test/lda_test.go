@@ -51,3 +51,35 @@ func TestLDAMultipleSTAMultiple(t *testing.T) {
 	check(t, "LDA, STA", v2, system.RandomAccessMemory.Values[0x2004])
 	check(t, "LDA, STA", v3, system.RandomAccessMemory.Values[0x2006])
 }
+
+func TestLDAX_B(t *testing.T) {
+	source := `
+	LXI B,0x1234
+	LDAX B
+	HLT
+	`
+
+	value := types.Word(255)
+
+	system := getSystem(source)
+	system.RandomAccessMemory.Values[0x1234] = value
+	system = runSystem(system)
+
+	check(t, "LDAX B", value, system.Accumulator.Value)
+}
+
+func TestLDAX_D(t *testing.T) {
+	source := `
+	LXI D,0x1234
+	LDAX D
+	HLT
+	`
+
+	value := types.Word(255)
+
+	system := getSystem(source)
+	system.RandomAccessMemory.Values[0x1234] = value
+	system = runSystem(system)
+
+	check(t, "LDAX D", value, system.Accumulator.Value)
+}

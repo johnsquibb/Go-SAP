@@ -67,6 +67,8 @@ var LiteralInstructions = []types.Word{
 	op.INX_B,
 	op.INX_D,
 	op.INX_H,
+	op.LDAX_B,
+	op.LDAX_D,
 	op.MOV_A_A,
 	op.MOV_A_B,
 	op.MOV_A_C,
