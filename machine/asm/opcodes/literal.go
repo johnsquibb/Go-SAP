@@ -168,6 +168,8 @@ var LiteralInstructions = []types.Word{
 	op.SBB_H,
 	op.SBB_L,
 	op.SBB_M,
+	op.STAX_B,
+	op.STAX_D,
 	op.STC,
 	op.SUB_A,
 	op.SUB_B,

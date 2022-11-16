@@ -63,6 +63,7 @@ var ByteSizes = map[string]int{
 	"SBB":  1,
 	"SBI":  2,
 	"STA":  3,
+	"STAX": 1,
 	"STC":  1,
 	"SUB":  1,
 	"SUI":  2,
