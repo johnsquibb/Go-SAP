@@ -6,44 +6,16 @@ import (
 	"Go-SAP3/machine/types"
 	"fmt"
 	"log"
+	"os"
 )
 
 // Sample Assembly source code.
 // Assembly code is converted to machine code by Assemble method.
 var source = `
-; -------------------------
-; CALL example with labels.
-; -------------------------
-
-CALL INIT
-CALL INC4
-CALL DEC4
-CALL INC4
-
-OUT 0x3
-
-CALL INC4
-OUT 0x4
-
+LXI H,0x1234
+LXI D,0x5678
+XCHG
 HLT
-
-INIT:
-	MVI A,0x20
-RET
-
-INC4:
-	INR A
-	INR A
-	INR A
-	INR A
-RET
-
-DEC4:
-	DCR A
-	DCR A
-	DCR A
-	DCR A
-RET
 `
 
 func main() {
@@ -72,6 +44,8 @@ func main() {
 		}
 	}
 
+	dumpRam(system)
+
 	// Display the total number of machine cycles used.
 	fmt.Println()
 	fmt.Println(fmt.Sprintf("Machine Cycles:\t %d", machine.UpdateCtr))
@@ -86,6 +60,7 @@ func main() {
 	fmt.Println(fmt.Sprintf("REG F:\t 0x%X\t (%d)", system.FRegister.Value, system.FRegister.Value))
 	fmt.Println(fmt.Sprintf("REG H:\t 0x%X\t (%d)", system.HRegister.Value, system.HRegister.Value))
 	fmt.Println(fmt.Sprintf("REG L:\t 0x%X\t (%d)", system.LRegister.Value, system.LRegister.Value))
+	fmt.Println(fmt.Sprintf("SP:\t 0x%X\t (%d)", system.StackPointer.Address, system.StackPointer.Address))
 	fmt.Println(fmt.Sprintf("OUTPUT (3):\t 0x%X\t (%d)", system.OutputRegister3.Value, system.OutputRegister3.Value))
 	fmt.Println(fmt.Sprintf("OUTPUT (4):\t 0x%X\t (%d)", system.OutputRegister4.Value, system.OutputRegister4.Value))
 	fmt.Println()
@@ -98,7 +73,33 @@ func main() {
 	fmt.Println()
 	fmt.Println()
 
+	fmt.Println(fmt.Sprintf("RAM ADDR (8000):\t 0x%X\t", system.RandomAccessMemory.Values[0x8000]))
+	fmt.Println(fmt.Sprintf("RAM ADDR (8001):\t 0x%X\t", system.RandomAccessMemory.Values[0x8001]))
+	fmt.Println(fmt.Sprintf("RAM ADDR (8002):\t 0x%X\t", system.RandomAccessMemory.Values[0x8002]))
+	fmt.Println(fmt.Sprintf("RAM ADDR (8003):\t 0x%X\t", system.RandomAccessMemory.Values[0x8003]))
+	fmt.Println(fmt.Sprintf("RAM ADDR (8050):\t 0x%X\t", system.RandomAccessMemory.Values[0x8050]))
+	fmt.Println(fmt.Sprintf("RAM ADDR (8051):\t 0x%X\t", system.RandomAccessMemory.Values[0x8051]))
+
 	// Restart system to ready another run.
 	system.Restart()
 	system.ProgramCounter.Value = types.DoubleWord(directives.PC)
+
+}
+
+func dumpRam(system machine.System) {
+	// create file
+	f, err := os.Create("RAM.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	// remember to close the file
+	defer f.Close()
+
+	// Write memory to file for debugging purposes.
+	for addr, val := range system.RandomAccessMemory.Values {
+		_, err := f.WriteString(fmt.Sprintf("%X %X\n", addr, val))
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
 }

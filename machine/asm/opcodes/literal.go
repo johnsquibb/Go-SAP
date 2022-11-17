@@ -183,6 +183,7 @@ var LiteralInstructions = []types.Word{
 	op.SUB_H,
 	op.SUB_L,
 	op.SUB_M,
+	op.XCHG,
 	op.XRA_A,
 	op.XRA_B,
 	op.XRA_C,

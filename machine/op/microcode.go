@@ -225,6 +225,7 @@ var Microcodes = [][]types.OctupleWord{
 	SUB_L:    mcSUB_L,
 	SUB_M:    mcSUB_M,
 	SUI:      mcSUI,
+	XCHG:     mcXCHG,
 	XRA_A:    mcXRA_A,
 	XRA_B:    mcXRA_B,
 	XRA_C:    mcXRA_C,
