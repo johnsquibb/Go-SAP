@@ -23,3 +23,8 @@ var mcINX_H = []types.OctupleWord{
 	HREG_accen | LREG_accen | ALU_we | ALU_inx, // T4
 	Noop, // T5
 }
+
+var mcINX_SP = []types.OctupleWord{
+	SP_accen | ALU_we | ALU_inx, // T4
+	Noop,                        // T5
+}

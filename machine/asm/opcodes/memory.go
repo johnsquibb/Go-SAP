@@ -26,5 +26,7 @@ var MemoryReferenceInstructions = []types.Word{
 	op.JPO,
 	op.JZ,
 	op.LDA,
+	op.LHLD,
+	op.SHLD,
 	op.STA,
 }

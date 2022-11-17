@@ -23,7 +23,11 @@ const (
 	T15
 	T16
 	T17
-	END = T17
+	T18
+	T19
+	T20
+	T21
+	END = T21
 )
 
 // RingCounter handles the timing states for each program cycle.
@@ -46,7 +50,6 @@ func (r *RingCounter) Clear() {
 // Clock increments the RingCounter State.
 func (r *RingCounter) Clock() {
 	r.Value++
-	// Hard-wired to 18 states.
 	if r.Value > END {
 		r.Clear()
 	}

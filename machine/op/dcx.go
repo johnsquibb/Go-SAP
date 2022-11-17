@@ -23,3 +23,8 @@ var mcDCX_H = []types.OctupleWord{
 	HREG_accen | LREG_accen | ALU_we | ALU_dcx, // T4
 	Noop, // T5
 }
+
+var mcDCX_SP = []types.OctupleWord{
+	SP_accen | ALU_we | ALU_dcx, // T4
+	Noop,                        // T5
+}

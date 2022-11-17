@@ -421,14 +421,14 @@ func (c ControllerSequencer) UpdateALU(s *System) {
 	// StackPointer has built-in increment/decrement operations.
 	if c.ControlWord.StackPointerAccumulatorEnable == types.High {
 		// Increment
-		if c.ControlWord.ArithmeticLogicUnitModeBit0 == types.Low &&
-			c.ControlWord.ArithmeticLogicUnitModeBit1 == types.High {
+		if c.ControlWord.ArithmeticLogicUnitModeBit4 == types.High &&
+			c.ControlWord.ArithmeticLogicUnitModeBit0 == types.High {
 			s.StackPointer.Increment()
 			return
 		}
 
 		// Decrement
-		if c.ControlWord.ArithmeticLogicUnitModeBit0 == types.High &&
+		if c.ControlWord.ArithmeticLogicUnitModeBit4 == types.High &&
 			c.ControlWord.ArithmeticLogicUnitModeBit1 == types.High {
 			s.StackPointer.Decrement()
 			return

@@ -22,6 +22,22 @@ func TestSTA(t *testing.T) {
 	check(t, "STA", value, system.RandomAccessMemory.Values[0x2002])
 }
 
+func TestSHLD(t *testing.T) {
+	source := `
+	LXI H,0x1234
+	SHLD 0x2000
+	HLT
+	`
+
+	system := getSystem(source)
+	system.RandomAccessMemory.Values[0x2000] = types.Word(0)
+	system.RandomAccessMemory.Values[0x2001] = types.Word(0)
+	system = runSystem(system)
+
+	check(t, "SHLD (LSB)", types.Word(0x34), system.RandomAccessMemory.Values[0x2000])
+	check(t, "SHLD (MSB)", types.Word(0x12), system.RandomAccessMemory.Values[0x2001])
+}
+
 func TestSTAX_B(t *testing.T) {
 	source := `
 	LDA 0x2000

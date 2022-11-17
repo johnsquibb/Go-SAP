@@ -36,7 +36,7 @@ const addressRomSize = 256
 type AddressRom [addressRomSize]DoubleWord
 
 // controlRomSize is the total size of the ControlRom.
-const controlRomSize = 1024
+const controlRomSize = 2048
 
 // ControlRom stores OctupleWord(s).
 type ControlRom [controlRomSize]OctupleWord

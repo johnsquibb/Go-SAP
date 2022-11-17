@@ -22,10 +22,10 @@ var mcCALL = []types.OctupleWord{
 	MDR_we | MAB_msbre,            // T8
 	PC_ce,                         // T9
 	PC_we | GPB_msbre | GPB_lsbre, // T10 Save next instruction address to stack for RET.
-	SP_accen | ALU_dcr,            // T11
+	SP_accen | ALU_dcx,            // T11
 	SP_we | MAR_re,                // T12
 	GPB_msbwe | MDR_re,            // T13
-	SP_accen | ALU_dcr,            // T14
+	SP_accen | ALU_dcx,            // T14
 	SP_we | MAR_re,                // T15
 	GPB_lsbwe | MDR_re,            // T16
 	MAB_msbwe | MAB_lsbwe | PC_re, // T17 Set PC to CALL destination address
@@ -40,10 +40,10 @@ var mcCNZ = []types.OctupleWord{
 	MDR_we | MAB_msbre,            // T8
 	PC_ce | FLG_czfne,             // T9 (Abort here if flag condition)
 	PC_we | GPB_msbre | GPB_lsbre, // T10 Save next instruction address to stack for RET.
-	SP_accen | ALU_dcr,            // T11
+	SP_accen | ALU_dcx,            // T11
 	SP_we | MAR_re,                // T12
 	GPB_msbwe | MDR_re,            // T13
-	SP_accen | ALU_dcr,            // T14
+	SP_accen | ALU_dcx,            // T14
 	SP_we | MAR_re,                // T15
 	GPB_lsbwe | MDR_re,            // T16
 	MAB_msbwe | MAB_lsbwe | PC_re, // T17 Set PC to CALL destination address
@@ -58,10 +58,10 @@ var mcCZ = []types.OctupleWord{
 	MDR_we | MAB_msbre,            // T8
 	PC_ce | FLG_czfie,             // T9 (Abort here if flag condition)
 	PC_we | GPB_msbre | GPB_lsbre, // T10 Save next instruction address to stack for RET.
-	SP_accen | ALU_dcr,            // T11
+	SP_accen | ALU_dcx,            // T11
 	SP_we | MAR_re,                // T12
 	GPB_msbwe | MDR_re,            // T13
-	SP_accen | ALU_dcr,            // T14
+	SP_accen | ALU_dcx,            // T14
 	SP_we | MAR_re,                // T15
 	GPB_lsbwe | MDR_re,            // T16
 	MAB_msbwe | MAB_lsbwe | PC_re, // T17 Set PC to CALL destination address
@@ -76,10 +76,10 @@ var mcCNC = []types.OctupleWord{
 	MDR_we | MAB_msbre,            // T8
 	PC_ce | FLG_ccfne,             // T9 (Abort here if flag condition)
 	PC_we | GPB_msbre | GPB_lsbre, // T10 Save next instruction address to stack for RET.
-	SP_accen | ALU_dcr,            // T11
+	SP_accen | ALU_dcx,            // T11
 	SP_we | MAR_re,                // T12
 	GPB_msbwe | MDR_re,            // T13
-	SP_accen | ALU_dcr,            // T14
+	SP_accen | ALU_dcx,            // T14
 	SP_we | MAR_re,                // T15
 	GPB_lsbwe | MDR_re,            // T16
 	MAB_msbwe | MAB_lsbwe | PC_re, // T17 Set PC to CALL destination address
@@ -94,10 +94,10 @@ var mcCC = []types.OctupleWord{
 	MDR_we | MAB_msbre,            // T8
 	PC_ce | FLG_ccfie,             // T9 (Abort here if flag condition)
 	PC_we | GPB_msbre | GPB_lsbre, // T10 Save next instruction address to stack for RET.
-	SP_accen | ALU_dcr,            // T11
+	SP_accen | ALU_dcx,            // T11
 	SP_we | MAR_re,                // T12
 	GPB_msbwe | MDR_re,            // T13
-	SP_accen | ALU_dcr,            // T14
+	SP_accen | ALU_dcx,            // T14
 	SP_we | MAR_re,                // T15
 	GPB_lsbwe | MDR_re,            // T16
 	MAB_msbwe | MAB_lsbwe | PC_re, // T17 Set PC to CALL destination address
@@ -112,10 +112,10 @@ var mcCPO = []types.OctupleWord{
 	MDR_we | MAB_msbre,            // T8
 	PC_ce | FLG_cpfne,             // T9 (Abort here if flag condition)
 	PC_we | GPB_msbre | GPB_lsbre, // T10 Save next instruction address to stack for RET.
-	SP_accen | ALU_dcr,            // T11
+	SP_accen | ALU_dcx,            // T11
 	SP_we | MAR_re,                // T12
 	GPB_msbwe | MDR_re,            // T13
-	SP_accen | ALU_dcr,            // T14
+	SP_accen | ALU_dcx,            // T14
 	SP_we | MAR_re,                // T15
 	GPB_lsbwe | MDR_re,            // T16
 	MAB_msbwe | MAB_lsbwe | PC_re, // T17 Set PC to CALL destination address
@@ -130,10 +130,10 @@ var mcCPE = []types.OctupleWord{
 	MDR_we | MAB_msbre,            // T8
 	PC_ce | FLG_cpfie,             // T9 (Abort here if flag condition)
 	PC_we | GPB_msbre | GPB_lsbre, // T10 Save next instruction address to stack for RET.
-	SP_accen | ALU_dcr,            // T11
+	SP_accen | ALU_dcx,            // T11
 	SP_we | MAR_re,                // T12
 	GPB_msbwe | MDR_re,            // T13
-	SP_accen | ALU_dcr,            // T14
+	SP_accen | ALU_dcx,            // T14
 	SP_we | MAR_re,                // T15
 	GPB_lsbwe | MDR_re,            // T16
 	MAB_msbwe | MAB_lsbwe | PC_re, // T17 Set PC to CALL destination address
@@ -148,10 +148,10 @@ var mcCP = []types.OctupleWord{
 	MDR_we | MAB_msbre,            // T8
 	PC_ce | FLG_csfne,             // T9 (Abort here if flag condition)
 	PC_we | GPB_msbre | GPB_lsbre, // T10 Save next instruction address to stack for RET.
-	SP_accen | ALU_dcr,            // T11
+	SP_accen | ALU_dcx,            // T11
 	SP_we | MAR_re,                // T12
 	GPB_msbwe | MDR_re,            // T13
-	SP_accen | ALU_dcr,            // T14
+	SP_accen | ALU_dcx,            // T14
 	SP_we | MAR_re,                // T15
 	GPB_lsbwe | MDR_re,            // T16
 	MAB_msbwe | MAB_lsbwe | PC_re, // T17 Set PC to CALL destination address
@@ -166,10 +166,10 @@ var mcCM = []types.OctupleWord{
 	MDR_we | MAB_msbre,            // T8
 	PC_ce | FLG_csfie,             // T9 (Abort here if flag condition)
 	PC_we | GPB_msbre | GPB_lsbre, // T10 Save next instruction address to stack for RET.
-	SP_accen | ALU_dcr,            // T11
+	SP_accen | ALU_dcx,            // T11
 	SP_we | MAR_re,                // T12
 	GPB_msbwe | MDR_re,            // T13
-	SP_accen | ALU_dcr,            // T14
+	SP_accen | ALU_dcx,            // T14
 	SP_we | MAR_re,                // T15
 	GPB_lsbwe | MDR_re,            // T16
 	MAB_msbwe | MAB_lsbwe | PC_re, // T17 Set PC to CALL destination address

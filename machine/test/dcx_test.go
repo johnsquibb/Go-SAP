@@ -50,6 +50,19 @@ func TestDCX_H(t *testing.T) {
 	check(t, "DCX H (carry)", types.Low, system.ArithmeticLogicUnit.Flags.Carry)
 }
 
+func TestDCX_SP(t *testing.T) {
+	source := `
+	LXI SP,0x1234
+	DCX SP
+	HLT
+	`
+
+	system := getSystem(source)
+	system = runSystem(system)
+
+	check(t, "DCX SP", types.DoubleWord(0x1234-1), system.StackPointer.Address)
+}
+
 func TestDCX_BMSB(t *testing.T) {
 	source := `
 	LXI B,0x1200

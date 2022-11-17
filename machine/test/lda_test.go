@@ -20,6 +20,24 @@ func TestLDA(t *testing.T) {
 	check(t, "LDA", value, system.Accumulator.Value)
 }
 
+func TestLHLD(t *testing.T) {
+	source := `
+	LHLD 0x1234
+	HLT
+	`
+
+	v1 := types.Word(0xFF)
+	v2 := types.Word(0xEE)
+
+	system := getSystem(source)
+	system.RandomAccessMemory.Values[0x1234] = v1
+	system.RandomAccessMemory.Values[0x1235] = v2
+	system = runSystem(system)
+
+	check(t, "LHLD (REG L)", v1, system.LRegister.Value)
+	check(t, "LHLD (REG H)", v2, system.HRegister.Value)
+}
+
 func TestLDAMultipleSTAMultiple(t *testing.T) {
 	source := `
 	LDA 0x2001

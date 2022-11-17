@@ -10,40 +10,40 @@ const (
 )
 
 var mcPUSH_B = []types.OctupleWord{
-	SP_accen | ALU_dcr, // T4
+	SP_accen | ALU_dcx, // T4
 	SP_we | MAR_re,     // T5
 	BREG_we | MDR_re,   // T6
-	SP_accen | ALU_dcr, // T7
+	SP_accen | ALU_dcx, // T7
 	SP_we | MAR_re,     // T8
 	CREG_we | MDR_re,   // T9
 	Noop,               // T10
 }
 
 var mcPUSH_D = []types.OctupleWord{
-	SP_accen | ALU_dcr, // T4
+	SP_accen | ALU_dcx, // T4
 	SP_we | MAR_re,     // T5
 	DREG_we | MDR_re,   // T6
-	SP_accen | ALU_dcr, // T7
+	SP_accen | ALU_dcx, // T7
 	SP_we | MAR_re,     // T8
 	EREG_we | MDR_re,   // T9
 	Noop,               // T10
 }
 
 var mcPUSH_H = []types.OctupleWord{
-	SP_accen | ALU_dcr, // T4
+	SP_accen | ALU_dcx, // T4
 	SP_we | MAR_re,     // T5
 	HREG_we | MDR_re,   // T6
-	SP_accen | ALU_dcr, // T7
+	SP_accen | ALU_dcx, // T7
 	SP_we | MAR_re,     // T8
 	LREG_we | MDR_re,   // T9
 	Noop,               // T10
 }
 
 var mcPUSH_PSW = []types.OctupleWord{
-	SP_accen | ALU_dcr, // T4
+	SP_accen | ALU_dcx, // T4
 	SP_we | MAR_re,     // T5
 	ACC_we | MDR_re,    // T6
-	SP_accen | ALU_dcr, // T7
+	SP_accen | ALU_dcx, // T7
 	SP_we | MAR_re,     // T8
 	FREG_we | MDR_re,   // T9
 	Noop,               // T10

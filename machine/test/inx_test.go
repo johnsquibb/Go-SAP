@@ -50,6 +50,19 @@ func TestINX_H(t *testing.T) {
 	check(t, "INX H (carry)", types.Low, system.ArithmeticLogicUnit.Flags.Carry)
 }
 
+func TestINX_SP(t *testing.T) {
+	source := `
+	LXI SP,0x1234
+	INX SP
+	HLT
+	`
+
+	system := getSystem(source)
+	system = runSystem(system)
+
+	check(t, "INX SP", types.DoubleWord(0x1234+1), system.StackPointer.Address)
+}
+
 func TestINX_BMSB(t *testing.T) {
 	source := `
 	LXI B,0x12FF
