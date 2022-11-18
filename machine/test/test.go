@@ -21,6 +21,7 @@ func getSystem(source string) machine.System {
 
 	// Run the computer.
 	system := machine.New()
+	system.InitRom()
 	system.Start()
 
 	return system
