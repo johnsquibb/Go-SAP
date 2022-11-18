@@ -15,12 +15,41 @@ import (
 // Sample Assembly source code.
 // Assembly code is converted to machine code by Assemble method.
 var source = `
-ACI 0x11
-ACI 0x11
-ACI 0x11
-ADC A
-ADC A
+; -------------------------
+; CALL example with labels.
+; -------------------------
+
+CALL INIT
+CALL INC4
+CALL DEC4
+CALL INC4
+
 HLT
+
+INIT:
+	MVI A,0x20
+RET
+
+INC4:
+	INR A
+	INR A
+	INR A
+	INR A
+RET
+
+DEC4:
+	DCR A
+	DCR A
+	DCR A
+	DCR A
+RET
+
+; --------------------------------
+; Listing of Assembler directives.
+;---------------------------------
+
+#dir ADDR 0x8000    ; The starting address for instructions.
+#dir PC 0x8000      ; The initial value of Program Counter after loading program.
 `
 
 func main() {
@@ -70,17 +99,17 @@ func main() {
 	fmt.Println()
 
 	// Display the contents of the various registers.
-	fmt.Println(fmt.Sprintf("REG A:\t 0x%X\t (%d)", system.Accumulator.Value, system.Accumulator.Value))
-	fmt.Println(fmt.Sprintf("REG B:\t 0x%X\t (%d)", system.BRegister.Value, system.BRegister.Value))
-	fmt.Println(fmt.Sprintf("REG C:\t 0x%X\t (%d)", system.CRegister.Value, system.CRegister.Value))
-	fmt.Println(fmt.Sprintf("REG D:\t 0x%X\t (%d)", system.DRegister.Value, system.DRegister.Value))
-	fmt.Println(fmt.Sprintf("REG E:\t 0x%X\t (%d)", system.ERegister.Value, system.ERegister.Value))
-	fmt.Println(fmt.Sprintf("REG F:\t 0x%X\t (%d)", system.FRegister.Value, system.FRegister.Value))
-	fmt.Println(fmt.Sprintf("REG H:\t 0x%X\t (%d)", system.HRegister.Value, system.HRegister.Value))
-	fmt.Println(fmt.Sprintf("REG L:\t 0x%X\t (%d)", system.LRegister.Value, system.LRegister.Value))
-	fmt.Println(fmt.Sprintf("SP:\t 0x%X\t (%d)", system.StackPointer.Address, system.StackPointer.Address))
-	fmt.Println(fmt.Sprintf("OUTPUT (3):\t 0x%X\t (%d)", system.OutputRegister3.Value, system.OutputRegister3.Value))
-	fmt.Println(fmt.Sprintf("OUTPUT (4):\t 0x%X\t (%d)", system.OutputRegister4.Value, system.OutputRegister4.Value))
+	fmt.Println(fmt.Sprintf("REG A:\t %02X\t", system.Accumulator.Value))
+	fmt.Println(fmt.Sprintf("REG B:\t %02X\t", system.BRegister.Value))
+	fmt.Println(fmt.Sprintf("REG C:\t %02X\t", system.CRegister.Value))
+	fmt.Println(fmt.Sprintf("REG D:\t %02X\t", system.DRegister.Value))
+	fmt.Println(fmt.Sprintf("REG E:\t %02X\t", system.ERegister.Value))
+	fmt.Println(fmt.Sprintf("REG F:\t %02X\t", system.FRegister.Value))
+	fmt.Println(fmt.Sprintf("REG H:\t %02X\t", system.HRegister.Value))
+	fmt.Println(fmt.Sprintf("REG L:\t %02X\t", system.LRegister.Value))
+	fmt.Println(fmt.Sprintf("SP:\t %02X\t", system.StackPointer.Address))
+	fmt.Println(fmt.Sprintf("IO (3):\t %02X\t", system.OutputRegister3.Value))
+	fmt.Println(fmt.Sprintf("IO (4):\t %02X\t", system.OutputRegister4.Value))
 	fmt.Println()
 
 	// Display the state of ALU flags.
@@ -91,16 +120,38 @@ func main() {
 	fmt.Println()
 	fmt.Println()
 
-	fmt.Println(fmt.Sprintf("RAM ADDR (8000):\t 0x%X\t", system.RandomAccessMemory.Values[0x8000]))
-	fmt.Println(fmt.Sprintf("RAM ADDR (8001):\t 0x%X\t", system.RandomAccessMemory.Values[0x8001]))
-	fmt.Println(fmt.Sprintf("RAM ADDR (8002):\t 0x%X\t", system.RandomAccessMemory.Values[0x8002]))
-	fmt.Println(fmt.Sprintf("RAM ADDR (8003):\t 0x%X\t", system.RandomAccessMemory.Values[0x8003]))
-	fmt.Println(fmt.Sprintf("RAM ADDR (8050):\t 0x%X\t", system.RandomAccessMemory.Values[0x8050]))
-	fmt.Println(fmt.Sprintf("RAM ADDR (8051):\t 0x%X\t", system.RandomAccessMemory.Values[0x8051]))
+	showRamRange(system, 0x8000, 16)
+	fmt.Println()
+	fmt.Println()
 
 	// Restart system to ready another run.
 	system.Restart()
 	system.ProgramCounter.Value = types.DoubleWord(directives.PC)
+}
+
+func showRamRange(system machine.System, start int, lines int) {
+	for i := start; i < start+lines; i++ {
+		fmt.Println(fmt.Sprintf("RAM (%02X-%02X):  %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X\t",
+			i,
+			i+16,
+			system.RandomAccessMemory.Values[i],
+			system.RandomAccessMemory.Values[i+1],
+			system.RandomAccessMemory.Values[i+2],
+			system.RandomAccessMemory.Values[i+3],
+			system.RandomAccessMemory.Values[i+4],
+			system.RandomAccessMemory.Values[i+5],
+			system.RandomAccessMemory.Values[i+6],
+			system.RandomAccessMemory.Values[i+7],
+			system.RandomAccessMemory.Values[i+8],
+			system.RandomAccessMemory.Values[i+9],
+			system.RandomAccessMemory.Values[i+10],
+			system.RandomAccessMemory.Values[i+11],
+			system.RandomAccessMemory.Values[i+12],
+			system.RandomAccessMemory.Values[i+13],
+			system.RandomAccessMemory.Values[i+14],
+			system.RandomAccessMemory.Values[i+15],
+		))
+	}
 }
 
 func writeRamFile(system machine.System) {
