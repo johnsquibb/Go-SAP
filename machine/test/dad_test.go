@@ -94,7 +94,7 @@ func TestDAD_SP(t *testing.T) {
 
 	system := getSystem(source)
 	system = runSystem(system)
-	
+
 	check(t, "DAD H (H)", types.Word(0x23), system.HRegister.Value)
 	check(t, "DAD H (L)", types.Word(0x45), system.LRegister.Value)
 	check(t, "DAD H (carry)", types.Low, system.ArithmeticLogicUnit.Flags.Carry)

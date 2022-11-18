@@ -38,14 +38,14 @@ var mcDAD_H = []types.OctupleWord{
 }
 
 var mcDAD_SP = []types.OctupleWord{
-	SP_we | GPB_lsbre | GPB_msbre,
+	SP_we | GPB_lsbre | GPB_msbre, // T1
 
 	// Add LSB of SP to Reg L
-	GPB_lsbwe | TMP_re, //
-	LREG_accen | ALU_we | ALU_add | FLG_cen | LREG_re, //
+	GPB_lsbwe | TMP_re, // T2
+	LREG_accen | ALU_we | ALU_add | FLG_cen | LREG_re, // T3
 
 	// Add MSB of SP to Reg H
-	GPB_msbwe | TMP_re, //
-	HREG_accen | ALU_we | ALU_adc | FLG_cen | HREG_re, //
-	Noop, //
+	GPB_msbwe | TMP_re, // T4
+	HREG_accen | ALU_we | ALU_adc | FLG_cen | HREG_re, // T5
+	Noop, // T6
 }
