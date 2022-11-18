@@ -72,7 +72,6 @@ type System struct {
 
 // Start initializes the system, and is analogous to power on.
 func (s *System) Start() {
-	s.InitRom()
 	s.InitRam()
 	s.Restart()
 }
@@ -90,6 +89,12 @@ func (s *System) InitRom() {
 	FillRomContents()
 	s.AddressReadOnlyMemory.Values = AddressRomContents
 	s.ControlReadOnlyMemory.Values = ControlRomContents
+}
+
+// LoadRom sets the initial state of AddressReadOnlyMemory and ControlReadOnlyMemory from the supplied values.
+func (s *System) LoadRom(addressRomContents types.AddressRom, controlRomContents types.ControlRom) {
+	s.AddressReadOnlyMemory.Values = addressRomContents
+	s.ControlReadOnlyMemory.Values = controlRomContents
 }
 
 // InitRam sets the initial state of RandomAccessMemory from the preconfigured values set in RamContents.

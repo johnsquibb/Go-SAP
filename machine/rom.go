@@ -3,7 +3,6 @@ package machine
 import (
 	"Go-SAP3/machine/op"
 	"Go-SAP3/machine/types"
-	"fmt"
 )
 
 // AddressRomContents emulates a physical ROM integrated circuit.
@@ -39,10 +38,6 @@ func FillRomContents() {
 			}
 		}
 	}
-}
-
-func DumpRomContents() {
-	fmt.Println(ControlRomContents)
 }
 
 // AddressReadOnlyMemory accepts input from InstructionRegister and outputs 8-bit addresses for use by the

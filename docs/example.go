@@ -4,17 +4,22 @@ import (
 	"Go-SAP3/machine"
 	"Go-SAP3/machine/asm"
 	"Go-SAP3/machine/types"
+	"bufio"
 	"fmt"
 	"log"
 	"os"
+	"strconv"
+	"strings"
 )
 
 // Sample Assembly source code.
 // Assembly code is converted to machine code by Assemble method.
 var source = `
-LXI H,0x1234
-LXI D,0x5678
-XCHG
+ACI 0x11
+ACI 0x11
+ACI 0x11
+ADC A
+ADC A
 HLT
 `
 
@@ -31,6 +36,13 @@ func main() {
 
 	// Create new system, set the program counter per directive.
 	system := machine.New()
+
+	// Initialize ROM data from defaults established in op/microcode.go
+	// system.InitRom()
+
+	// Initialize ROM data previously exported to .dat files in this directory
+	system.LoadRom(loadAddressRom(), loadControlRom())
+
 	system.Start()
 	system.ProgramCounter.Value = types.DoubleWord(directives.PC)
 
@@ -44,7 +56,13 @@ func main() {
 		}
 	}
 
-	dumpRam(system)
+	// Export ROM content to data files in local directory.
+	// Can be used to boostrap the system in subsequent runs (see above)
+	// writeControlRomFile(system)
+	// writeAddressRomFile(system)
+
+	// Write RAM to file in local directory for debugging purposes.
+	writeRamFile(system)
 
 	// Display the total number of machine cycles used.
 	fmt.Println()
@@ -83,23 +101,90 @@ func main() {
 	// Restart system to ready another run.
 	system.Restart()
 	system.ProgramCounter.Value = types.DoubleWord(directives.PC)
-
 }
 
-func dumpRam(system machine.System) {
-	// create file
-	f, err := os.Create("RAM.txt")
+func writeRamFile(system machine.System) {
+	f, err := os.Create("RAM.dat")
 	if err != nil {
 		log.Fatal(err)
 	}
-	// remember to close the file
 	defer f.Close()
 
-	// Write memory to file for debugging purposes.
 	for addr, val := range system.RandomAccessMemory.Values {
 		_, err := f.WriteString(fmt.Sprintf("%X %X\n", addr, val))
 		if err != nil {
 			log.Fatal(err)
 		}
 	}
+}
+
+func writeControlRomFile(system machine.System) {
+	f, err := os.Create("controlROM.dat")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer f.Close()
+
+	for addr, val := range system.ControlReadOnlyMemory.Values {
+		_, err := f.WriteString(fmt.Sprintf("%X %X\n", addr, val))
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+}
+
+func writeAddressRomFile(system machine.System) {
+	f, err := os.Create("addressROM.dat")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer f.Close()
+
+	for addr, val := range system.AddressReadOnlyMemory.Values {
+		_, err := f.WriteString(fmt.Sprintf("%X %X\n", addr, val))
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+}
+
+func loadAddressRom() types.AddressRom {
+	var addressRom = types.AddressRom{}
+
+	for addr, value := range readRomFile("addressROM.dat") {
+		addressRom[addr] = types.DoubleWord(value)
+	}
+
+	return addressRom
+}
+
+func loadControlRom() types.ControlRom {
+	var controlRom = types.ControlRom{}
+
+	for addr, value := range readRomFile("controlROM.dat") {
+		controlRom[addr] = types.OctupleWord(value)
+	}
+
+	return controlRom
+}
+
+func readRomFile(filename string) []int64 {
+	file, err := os.Open(filename)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
+
+	var lines []int64
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		// Each line format is: Address Value
+		vals := strings.Split(scanner.Text(), " ")
+
+		value, _ := strconv.ParseInt(vals[1], 16, 64)
+
+		lines = append(lines, value)
+	}
+
+	return lines
 }
