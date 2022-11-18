@@ -10,7 +10,7 @@ const (
 	DAD_B  = 0x09
 	DAD_D  = 0x19
 	DAD_H  = 0x29
-	DAD_SP = 0x29
+	DAD_SP = 0x39
 )
 
 var mcDAD_B = []types.OctupleWord{
@@ -35,4 +35,17 @@ var mcDAD_H = []types.OctupleWord{
 	HREG_we | TMP_re, // T6
 	HREG_accen | ALU_we | ALU_adc | FLG_cen | HREG_re, // T7
 	Noop, // T8
+}
+
+var mcDAD_SP = []types.OctupleWord{
+	SP_we | GPB_lsbre | GPB_msbre,
+
+	// Add LSB of SP to Reg L
+	GPB_lsbwe | TMP_re, //
+	LREG_accen | ALU_we | ALU_add | FLG_cen | LREG_re, //
+
+	// Add MSB of SP to Reg H
+	GPB_msbwe | TMP_re, //
+	HREG_accen | ALU_we | ALU_adc | FLG_cen | HREG_re, //
+	Noop, //
 }

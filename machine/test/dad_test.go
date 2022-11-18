@@ -5,7 +5,6 @@ import (
 	"testing"
 )
 
-
 func TestDAD_B(t *testing.T) {
 	source := `
 	LXI H,0x0000
@@ -82,6 +81,22 @@ func TestDAD_H(t *testing.T) {
 
 	check(t, "DAD H (H)", types.Word(36), system.HRegister.Value)
 	check(t, "DAD H (L)", types.Word(104), system.LRegister.Value)
+	check(t, "DAD H (carry)", types.Low, system.ArithmeticLogicUnit.Flags.Carry)
+}
+
+func TestDAD_SP(t *testing.T) {
+	source := `
+	LXI H,0x1234
+	LXI SP,0x1111
+	DAD SP
+	HLT
+	`
+
+	system := getSystem(source)
+	system = runSystem(system)
+	
+	check(t, "DAD H (H)", types.Word(0x23), system.HRegister.Value)
+	check(t, "DAD H (L)", types.Word(0x45), system.LRegister.Value)
 	check(t, "DAD H (carry)", types.Low, system.ArithmeticLogicUnit.Flags.Carry)
 }
 

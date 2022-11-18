@@ -58,6 +58,7 @@ var Mnemonics = map[string]types.Word{
 	"DAD B":    op.DAD_B,
 	"DAD D":    op.DAD_D,
 	"DAD H":    op.DAD_H,
+	"DAD SP":   op.DAD_SP,
 	"DCR A":    op.DCR_A,
 	"DCR B":    op.DCR_B,
 	"DCR C":    op.DCR_C,

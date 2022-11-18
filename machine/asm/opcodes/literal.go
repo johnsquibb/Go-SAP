@@ -44,6 +44,7 @@ var LiteralInstructions = []types.Word{
 	op.DAD_B,
 	op.DAD_D,
 	op.DAD_H,
+	op.DAD_SP,
 	op.DCR_A,
 	op.DCR_B,
 	op.DCR_C,

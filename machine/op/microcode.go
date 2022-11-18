@@ -57,6 +57,7 @@ var Microcodes = [][]types.OctupleWord{
 	DAD_B:    mcDAD_B,
 	DAD_D:    mcDAD_D,
 	DAD_H:    mcDAD_H,
+	DAD_SP:   mcDAD_SP,
 	DCR_A:    mcDCR_A,
 	DCR_B:    mcDCR_B,
 	DCR_C:    mcDCR_C,
