@@ -67,10 +67,10 @@ func main() {
 	system := machine.New()
 
 	// Initialize ROM data from defaults established in op/microcode.go
-	// system.InitRom()
+	system.InitRom()
 
 	// Initialize ROM data previously exported to .dat files in this directory
-	system.LoadRom(loadAddressRom(), loadControlRom())
+	// system.LoadRom(loadAddressRom(), loadControlRom())
 
 	system.Start()
 	system.ProgramCounter.Value = types.DoubleWord(directives.PC)
@@ -91,7 +91,7 @@ func main() {
 	// writeAddressRomFile(system)
 
 	// Write RAM to file in local directory for debugging purposes.
-	writeRamFile(system)
+	// writeRamFile(system)
 
 	// Display the total number of machine cycles used.
 	fmt.Println()
