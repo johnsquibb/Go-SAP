@@ -1,6 +1,6 @@
 package op
 
-import "Go-SAP3/machine/types"
+import "Go-SAP/machine/types"
 
 const (
 	SBB_A = 0x9f
@@ -20,39 +20,39 @@ var mcSBB_A = []types.OctupleWord{
 }
 
 var mcSBB_B = []types.OctupleWord{
-	BREG_we | TMP_re,                   // T4
+	BREG_we | TMP_re,                      // T4
 	ALU_we | ALU_sbb | FLG_enall | ACC_re, // T5
-	Noop,                               // T6
+	Noop,                                  // T6
 }
 
 var mcSBB_C = []types.OctupleWord{
-	CREG_we | TMP_re,                   // T4
+	CREG_we | TMP_re,                      // T4
 	ALU_we | ALU_sbb | FLG_enall | ACC_re, // T5
-	Noop,                               // T6
+	Noop,                                  // T6
 }
 
 var mcSBB_D = []types.OctupleWord{
-	DREG_we | TMP_re,                   // T4
+	DREG_we | TMP_re,                      // T4
 	ALU_we | ALU_sbb | FLG_enall | ACC_re, // T5
-	Noop,                               // T6
+	Noop,                                  // T6
 }
 
 var mcSBB_E = []types.OctupleWord{
-	EREG_we | TMP_re,                   // T4
+	EREG_we | TMP_re,                      // T4
 	ALU_we | ALU_sbb | FLG_enall | ACC_re, // T5
-	Noop,                               // T6
+	Noop,                                  // T6
 }
 
 var mcSBB_H = []types.OctupleWord{
-	HREG_we | TMP_re,                   // T4
+	HREG_we | TMP_re,                      // T4
 	ALU_we | ALU_sbb | FLG_enall | ACC_re, // T5
-	Noop,                               // T6
+	Noop,                                  // T6
 }
 
 var mcSBB_L = []types.OctupleWord{
-	LREG_we | TMP_re,                   // T4
+	LREG_we | TMP_re,                      // T4
 	ALU_we | ALU_sbb | FLG_enall | ACC_re, // T5
-	Noop,                               // T6
+	Noop,                                  // T6
 }
 
 var mcSBB_M = []types.OctupleWord{

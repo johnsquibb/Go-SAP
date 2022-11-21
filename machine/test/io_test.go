@@ -1,7 +1,7 @@
 package test
 
 import (
-	"Go-SAP3/machine/types"
+	"Go-SAP/machine/types"
 	"testing"
 )
 

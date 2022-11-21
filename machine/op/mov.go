@@ -1,6 +1,6 @@
 package op
 
-import "Go-SAP3/machine/types"
+import "Go-SAP/machine/types"
 
 const (
 	MOV_A_A = 0x7f
@@ -396,7 +396,7 @@ var mcMOV_M_B = []types.OctupleWord{
 	HREG_we | MAB_msbre,            // T4
 	LREG_we | MAB_lsbre,            // T5
 	MAB_lsbwe | MAB_msbwe | MAR_re, // T6
-	BREG_we | MDR_re,                // T7
+	BREG_we | MDR_re,               // T7
 	Noop,                           // T8
 }
 
@@ -404,7 +404,7 @@ var mcMOV_M_C = []types.OctupleWord{
 	HREG_we | MAB_msbre,            // T4
 	LREG_we | MAB_lsbre,            // T5
 	MAB_lsbwe | MAB_msbwe | MAR_re, // T6
-	CREG_we | MDR_re,                // T7
+	CREG_we | MDR_re,               // T7
 	Noop,                           // T8
 }
 
@@ -412,7 +412,7 @@ var mcMOV_M_D = []types.OctupleWord{
 	HREG_we | MAB_msbre,            // T4
 	LREG_we | MAB_lsbre,            // T5
 	MAB_lsbwe | MAB_msbwe | MAR_re, // T6
-	DREG_we | MDR_re,                // T7
+	DREG_we | MDR_re,               // T7
 	Noop,                           // T8
 }
 
@@ -420,7 +420,7 @@ var mcMOV_M_E = []types.OctupleWord{
 	HREG_we | MAB_msbre,            // T4
 	LREG_we | MAB_lsbre,            // T5
 	MAB_lsbwe | MAB_msbwe | MAR_re, // T6
-	EREG_we | MDR_re,                // T7
+	EREG_we | MDR_re,               // T7
 	Noop,                           // T8
 }
 
@@ -436,6 +436,6 @@ var mcMOV_M_L = []types.OctupleWord{
 	HREG_we | MAB_msbre,            // T4
 	LREG_we | MAB_lsbre,            // T5
 	MAB_lsbwe | MAB_msbwe | MAR_re, // T6
-	LREG_we | MDR_re,                // T7
+	LREG_we | MDR_re,               // T7
 	Noop,                           // T8
 }

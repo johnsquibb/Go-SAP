@@ -1,6 +1,6 @@
 package op
 
-import "Go-SAP3/machine/types"
+import "Go-SAP/machine/types"
 
 const (
 	INR_A = 0x3c
@@ -19,51 +19,51 @@ var mcINR_A = []types.OctupleWord{
 }
 
 var mcINR_B = []types.OctupleWord{
-	ACC_we | TMP_re,  // T4
-	BREG_we | ACC_re, // T5
+	ACC_we | TMP_re,                     // T4
+	BREG_we | ACC_re,                    // T5
 	ALU_inr | ALU_we | FLG_nc | BREG_re, // T6
-	TMP_we | ACC_re, // T7
-	Noop,            // T8
+	TMP_we | ACC_re,                     // T7
+	Noop,                                // T8
 }
 
 var mcINR_C = []types.OctupleWord{
-	ACC_we | TMP_re,  // T4
-	CREG_we | ACC_re, // T5
+	ACC_we | TMP_re,                     // T4
+	CREG_we | ACC_re,                    // T5
 	ALU_inr | ALU_we | FLG_nc | CREG_re, // T6
-	TMP_we | ACC_re, // T7
-	Noop,            // T8
+	TMP_we | ACC_re,                     // T7
+	Noop,                                // T8
 }
 
 var mcINR_D = []types.OctupleWord{
-	ACC_we | TMP_re,  // T4
-	DREG_we | ACC_re, // T5
+	ACC_we | TMP_re,                     // T4
+	DREG_we | ACC_re,                    // T5
 	ALU_inr | ALU_we | FLG_nc | DREG_re, // T6
-	TMP_we | ACC_re, // T7
-	Noop,            // T8
+	TMP_we | ACC_re,                     // T7
+	Noop,                                // T8
 }
 
 var mcINR_E = []types.OctupleWord{
-	ACC_we | TMP_re,  // T4
-	EREG_we | ACC_re, // T5
+	ACC_we | TMP_re,                     // T4
+	EREG_we | ACC_re,                    // T5
 	ALU_inr | ALU_we | FLG_nc | EREG_re, // T6
-	TMP_we | ACC_re, // T7
-	Noop,            // T8
+	TMP_we | ACC_re,                     // T7
+	Noop,                                // T8
 }
 
 var mcINR_H = []types.OctupleWord{
-	ACC_we | TMP_re,  // T4
-	HREG_we | ACC_re, // T5
+	ACC_we | TMP_re,                     // T4
+	HREG_we | ACC_re,                    // T5
 	ALU_inr | ALU_we | FLG_nc | HREG_re, // T6
-	TMP_we | ACC_re, // T7
-	Noop,            // T8
+	TMP_we | ACC_re,                     // T7
+	Noop,                                // T8
 }
 
 var mcINR_L = []types.OctupleWord{
-	ACC_we | TMP_re,  // T4
-	LREG_we | ACC_re, // T5
+	ACC_we | TMP_re,                     // T4
+	LREG_we | ACC_re,                    // T5
 	ALU_inr | ALU_we | FLG_nc | LREG_re, // T6
-	TMP_we | ACC_re, // T7
-	Noop,            // T8
+	TMP_we | ACC_re,                     // T7
+	Noop,                                // T8
 }
 
 var mcINR_M = []types.OctupleWord{

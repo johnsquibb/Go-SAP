@@ -1,7 +1,7 @@
 package machine
 
 import (
-	"Go-SAP3/machine/types"
+	"Go-SAP/machine/types"
 	"log"
 )
 
@@ -15,7 +15,7 @@ func ApplyInstructionsToRamContents(instructions []types.Word, address int) {
 	}
 
 	for offset, instruction := range instructions {
-		RamContents[address + offset] = instruction
+		RamContents[address+offset] = instruction
 	}
 }
 

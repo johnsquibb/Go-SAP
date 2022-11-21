@@ -1,7 +1,7 @@
 package machine
 
 import (
-	"Go-SAP3/machine/types"
+	"Go-SAP/machine/types"
 )
 
 type BinaryAdder struct {
@@ -16,6 +16,6 @@ func (ba *BinaryAdder) Calculate(a, b uint8, carryIn types.State) (sum types.Wor
 	result := types.DoubleWord(a) + types.DoubleWord(b) + carry
 	carryOut = result&0b1_0000_0000 != 0
 	sum = types.Word(result)
-	
+
 	return
 }

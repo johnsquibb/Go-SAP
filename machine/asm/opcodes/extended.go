@@ -1,8 +1,8 @@
 package opcodes
 
 import (
-	"Go-SAP3/machine/op"
-	"Go-SAP3/machine/types"
+	"Go-SAP/machine/op"
+	"Go-SAP/machine/types"
 )
 
 // ExtendedInstructions is the list of OpCode(s) that supply an operand as two bytes (MSB|LSB) for immediate use.

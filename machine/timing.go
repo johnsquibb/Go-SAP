@@ -1,6 +1,6 @@
 package machine
 
-import "Go-SAP3/machine/types"
+import "Go-SAP/machine/types"
 
 // T1 thru END states are controlled by RingCounter clock.
 // T1 - T3 represent the periods of the Fetch Cycle.

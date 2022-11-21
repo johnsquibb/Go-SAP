@@ -1,6 +1,6 @@
 package op
 
-import "Go-SAP3/machine/types"
+import "Go-SAP/machine/types"
 
 const (
 	CALL = 0xcd

@@ -1,6 +1,6 @@
 package op
 
-import "Go-SAP3/machine/types"
+import "Go-SAP/machine/types"
 
 const (
 	ORA_A = 0xb7
@@ -14,7 +14,7 @@ const (
 )
 
 var mcORA_A = []types.OctupleWord{
-	ACC_we | TMP_re,                      // T4
+	ACC_we | TMP_re,                       // T4
 	ALU_ora | ALU_we | FLG_enall | ACC_re, // T5
 	Noop,                                  // T6
 }

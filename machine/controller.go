@@ -1,8 +1,8 @@
 package machine
 
 import (
-	"Go-SAP3/machine/op"
-	"Go-SAP3/machine/types"
+	"Go-SAP/machine/op"
+	"Go-SAP/machine/types"
 )
 
 // ControllerSequencer provides instructions to each logic unit.

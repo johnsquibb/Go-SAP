@@ -1,7 +1,7 @@
 package test
 
 import (
-	"Go-SAP3/machine/types"
+	"Go-SAP/machine/types"
 	"testing"
 )
 
@@ -56,7 +56,6 @@ func TestADI(t *testing.T) {
 
 	check(t, "ADI", types.Word(0xC), system.Accumulator.Value)
 }
-
 
 func TestACI(t *testing.T) {
 	source := `

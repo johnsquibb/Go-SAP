@@ -1,7 +1,7 @@
 package machine
 
 import (
-	"Go-SAP3/machine/types"
+	"Go-SAP/machine/types"
 )
 
 // Register is a general-purpose register.

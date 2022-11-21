@@ -1,6 +1,6 @@
 package op
 
-import "Go-SAP3/machine/types"
+import "Go-SAP/machine/types"
 
 // Double-add BC Register pair to the HL Register pair.
 // H and L both act as accumulator during this instruction.

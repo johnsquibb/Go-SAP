@@ -1,6 +1,6 @@
 package op
 
-import "Go-SAP3/machine/types"
+import "Go-SAP/machine/types"
 
 const (
 	STC = 0x37
@@ -9,10 +9,10 @@ const (
 
 var mcSTC = []types.OctupleWord{
 	ALU_we | ALU_stc, // T4
-	Noop,                  // T5
+	Noop,             // T5
 }
 
 var mcCMC = []types.OctupleWord{
 	ALU_we | ALU_cmc, // T4
-	Noop,                  // T5
+	Noop,             // T5
 }

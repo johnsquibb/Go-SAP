@@ -1,6 +1,6 @@
 package op
 
-import "Go-SAP3/machine/types"
+import "Go-SAP/machine/types"
 
 const (
 	ADC_A = 0x8f
@@ -14,45 +14,45 @@ const (
 )
 
 var mcADC_A = []types.OctupleWord{
-	ACC_we | TMP_re, // T4
+	ACC_we | TMP_re,                       // T4
 	ALU_we | ALU_adc | FLG_enall | ACC_re, // T5
-	Noop, // T6
+	Noop,                                  // T6
 }
 
 var mcADC_B = []types.OctupleWord{
-	BREG_we | TMP_re,                   // T4
+	BREG_we | TMP_re,                      // T4
 	ALU_we | ALU_adc | FLG_enall | ACC_re, // T5
-	Noop,                               // T6
+	Noop,                                  // T6
 }
 
 var mcADC_C = []types.OctupleWord{
-	CREG_we | TMP_re,                   // T4
+	CREG_we | TMP_re,                      // T4
 	ALU_we | ALU_adc | FLG_enall | ACC_re, // T5
-	Noop,                               // T6
+	Noop,                                  // T6
 }
 
 var mcADC_D = []types.OctupleWord{
-	DREG_we | TMP_re,                   // T4
+	DREG_we | TMP_re,                      // T4
 	ALU_we | ALU_adc | FLG_enall | ACC_re, // T5
-	Noop,                               // T6
+	Noop,                                  // T6
 }
 
 var mcADC_E = []types.OctupleWord{
-	EREG_we | TMP_re,                   // T4
+	EREG_we | TMP_re,                      // T4
 	ALU_we | ALU_adc | FLG_enall | ACC_re, // T5
-	Noop,                               // T6
+	Noop,                                  // T6
 }
 
 var mcADC_H = []types.OctupleWord{
-	HREG_we | TMP_re,                   // T4
+	HREG_we | TMP_re,                      // T4
 	ALU_we | ALU_adc | FLG_enall | ACC_re, // T5
-	Noop,                               // T6
+	Noop,                                  // T6
 }
 
 var mcADC_L = []types.OctupleWord{
-	LREG_we | TMP_re,                   // T4
+	LREG_we | TMP_re,                      // T4
 	ALU_we | ALU_adc | FLG_enall | ACC_re, // T5
-	Noop,                               // T6
+	Noop,                                  // T6
 }
 
 var mcADC_M = []types.OctupleWord{

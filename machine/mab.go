@@ -1,7 +1,7 @@
 package machine
 
 import (
-	"Go-SAP3/machine/types"
+	"Go-SAP/machine/types"
 )
 
 // DoubleWordBuffer is a 16-bit register for combining 2 8-bit values (LSB, MSB) into a 16-bit memory address.

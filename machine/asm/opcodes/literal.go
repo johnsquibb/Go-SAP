@@ -1,8 +1,8 @@
 package opcodes
 
 import (
-	"Go-SAP3/machine/op"
-	"Go-SAP3/machine/types"
+	"Go-SAP/machine/op"
+	"Go-SAP/machine/types"
 )
 
 // LiteralInstructions is the list of OpCode(s) that do not reference a memory address or supply a byte.

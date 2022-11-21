@@ -1,6 +1,6 @@
 package machine
 
-import "Go-SAP3/machine/types"
+import "Go-SAP/machine/types"
 
 // New returns an initialized System structure.
 func New() System {

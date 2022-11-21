@@ -1,7 +1,7 @@
 package test
 
 import (
-	"Go-SAP3/machine/types"
+	"Go-SAP/machine/types"
 	"testing"
 )
 
@@ -147,7 +147,7 @@ func TestSBB_M(t *testing.T) {
 	system.RandomAccessMemory.Values[0x1234] = value
 	system = runSystem(system)
 
-	check(t, "SBB M", types.Word(0x2a) - 1, system.Accumulator.Value)
+	check(t, "SBB M", types.Word(0x2a)-1, system.Accumulator.Value)
 	check(t, "SBB L (carry)", types.Low, system.ArithmeticLogicUnit.Flags.Carry)
 	check(t, "SBB L (zero)", types.Low, system.ArithmeticLogicUnit.Flags.Zero)
 	check(t, "SBB L (sign)", types.Low, system.ArithmeticLogicUnit.Flags.Sign)

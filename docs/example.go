@@ -1,9 +1,9 @@
 package main
 
 import (
-	"Go-SAP3/machine"
-	"Go-SAP3/machine/asm"
-	"Go-SAP3/machine/types"
+	"Go-SAP/machine"
+	"Go-SAP/machine/asm"
+	"Go-SAP/machine/types"
 	"bufio"
 	"fmt"
 	"log"

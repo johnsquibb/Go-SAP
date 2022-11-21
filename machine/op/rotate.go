@@ -1,6 +1,6 @@
 package op
 
-import "Go-SAP3/machine/types"
+import "Go-SAP/machine/types"
 
 const (
 	RAL = 0x17
@@ -16,7 +16,7 @@ var mcRAL = []types.OctupleWord{
 
 var mcRAR = []types.OctupleWord{
 	ALU_rar | ALU_we | FLG_cen | ACC_re, // T4
-	Noop,                      // T5
+	Noop,                                // T5
 }
 
 var mcRLC = []types.OctupleWord{
@@ -26,5 +26,5 @@ var mcRLC = []types.OctupleWord{
 
 var mcRRC = []types.OctupleWord{
 	ALU_rrc | ALU_we | FLG_cen | ACC_re, // T4
-	Noop,                      // T5
+	Noop,                                // T5
 }

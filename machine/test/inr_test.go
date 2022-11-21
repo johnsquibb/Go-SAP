@@ -1,7 +1,7 @@
 package test
 
 import (
-	"Go-SAP3/machine/types"
+	"Go-SAP/machine/types"
 	"testing"
 )
 
@@ -122,4 +122,3 @@ func TestINR_M(t *testing.T) {
 	check(t, "INR M", value+1, system.RandomAccessMemory.Values[0x1234])
 	check(t, "INR M (carry)", types.Low, system.ArithmeticLogicUnit.Flags.Carry)
 }
-
